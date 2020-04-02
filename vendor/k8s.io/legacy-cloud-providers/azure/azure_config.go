@@ -19,7 +19,6 @@ limitations under the License.
 package azure
 
 import (
-	"context"
 	"fmt"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -69,7 +68,7 @@ func (az *Cloud) getConfigFromSecret() (*Config, error) {
 		return nil, nil
 	}
 
-	secret, err := az.kubeClient.CoreV1().Secrets(cloudConfigNamespace).Get(context.TODO(), cloudConfigSecretName, metav1.GetOptions{})
+	secret, err := az.kubeClient.CoreV1().Secrets(cloudConfigNamespace).Get(cloudConfigSecretName, metav1.GetOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("failed to get secret %s: %v", cloudConfigSecretName, err)
 	}

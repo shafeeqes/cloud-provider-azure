@@ -28,7 +28,6 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	cloudprovider "k8s.io/cloud-provider"
 	"k8s.io/klog"
-	azcache "k8s.io/legacy-cloud-providers/azure/cache"
 )
 
 // makeZone returns the zone value in format of <region>-<zone-id>.
@@ -54,7 +53,7 @@ func (az *Cloud) GetZoneID(zoneLabel string) string {
 // If the node is not running with availability zones, then it will fall back to fault domain.
 func (az *Cloud) GetZone(ctx context.Context) (cloudprovider.Zone, error) {
 	if az.UseInstanceMetadata {
-		metadata, err := az.metadata.GetMetadata(azcache.CacheReadTypeUnsafe)
+		metadata, err := az.metadata.GetMetadata(cacheReadTypeUnsafe)
 		if err != nil {
 			return cloudprovider.Zone{}, err
 		}

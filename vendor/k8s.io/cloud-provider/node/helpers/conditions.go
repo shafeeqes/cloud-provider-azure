@@ -17,7 +17,6 @@ limitations under the License.
 package helpers
 
 import (
-	"context"
 	"encoding/json"
 	"time"
 
@@ -52,6 +51,6 @@ func SetNodeCondition(c clientset.Interface, node types.NodeName, condition v1.N
 	if err != nil {
 		return err
 	}
-	_, err = c.CoreV1().Nodes().PatchStatus(context.TODO(), string(node), patch)
+	_, err = c.CoreV1().Nodes().PatchStatus(string(node), patch)
 	return err
 }

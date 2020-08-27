@@ -6,12 +6,6 @@ load(
     "go_test",
 )
 
-go_test(
-    name = "go_default_test",
-    srcs = ["metrics_test.go"],
-    embed = [":go_default_library"],
-)
-
 go_library(
     name = "go_default_library",
     srcs = ["metrics.go"],
@@ -21,6 +15,7 @@ go_library(
         "//staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/validation:go_default_library",
         "//staging/src/k8s.io/apimachinery/pkg/types:go_default_library",
         "//staging/src/k8s.io/apimachinery/pkg/util/sets:go_default_library",
+        "//staging/src/k8s.io/apiserver/pkg/audit:go_default_library",
         "//staging/src/k8s.io/apiserver/pkg/endpoints/request:go_default_library",
         "//staging/src/k8s.io/apiserver/pkg/features:go_default_library",
         "//staging/src/k8s.io/apiserver/pkg/util/feature:go_default_library",
@@ -41,4 +36,10 @@ filegroup(
     name = "all-srcs",
     srcs = [":package-srcs"],
     tags = ["automanaged"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["metrics_test.go"],
+    embed = [":go_default_library"],
 )

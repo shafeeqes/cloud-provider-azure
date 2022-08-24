@@ -9,7 +9,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install \
   ./cmd/...
 
 ############# base               #############
-FROM eu.gcr.io/gardener-project/3rd/alpine:3.13.5 AS base
+FROM gcr.io/distroless/static-debian11:nonroot AS base
 
 WORKDIR /
 
